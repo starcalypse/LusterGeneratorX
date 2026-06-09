@@ -14,4 +14,21 @@ class LGX_PT_MainPanel(bpy.types.Panel):
 
         layout = self.layout
 
-        layout.label(text="LGX Foundation")
+        props = context.scene.lgx
+
+        layout.prop(props, "preset")
+
+        box = layout.box()
+        box.label(text="Pattern")
+
+        box.prop(props, "pattern_scale")
+        box.prop(props, "pattern_seed")
+        box.prop(props, "pattern_detail")
+
+        layout.separator()
+
+        layout.operator(
+            "lgx.generate",
+            text="Generate",
+            icon="SHADING_RENDERED",
+        )

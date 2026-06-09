@@ -2,9 +2,11 @@ import bpy
 
 from .ui import LGX_PT_MainPanel
 from .properties import LGXProperties
+from .operators import LGX_OT_Generate
 
 classes = (
     LGXProperties,
+    LGX_OT_Generate,
     LGX_PT_MainPanel,
 )
 
