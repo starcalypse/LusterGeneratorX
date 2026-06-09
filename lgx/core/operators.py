@@ -1,5 +1,7 @@
 import bpy
 
+from .material_builder import MaterialBuilder
+
 
 class LGX_OT_Generate(bpy.types.Operator):
 
@@ -8,13 +10,20 @@ class LGX_OT_Generate(bpy.types.Operator):
 
     def execute(self, context):
 
-        from .material_builder import MaterialBuilder
+        material = MaterialBuilder.build(context)
 
-        MaterialBuilder.build(context)
+        if material is None:
+
+            self.report(
+                {'WARNING'},
+                "No active object selected"
+            )
+
+            return {'CANCELLED'}
 
         self.report(
-        {'INFO'},
-        "LGX Material Created"
+            {'INFO'},
+            f"{material.name} created"
         )
 
         return {'FINISHED'}

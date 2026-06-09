@@ -1,3 +1,9 @@
+"""
+Luster Generator X
+
+Material Builder
+"""
+
 import bpy
 
 
@@ -13,16 +19,13 @@ class MaterialBuilder:
         if obj is None:
             return None
 
-        material = bpy.data.materials.get(cls.MATERIAL_NAME)
-
-        if material:
-
-            bpy.data.materials.remove(material)
-
+        # Create material
         material = bpy.data.materials.new(cls.MATERIAL_NAME)
 
+        # Enable nodes
         material.use_nodes = True
 
+        # Assign material
         obj.active_material = material
 
         return material
