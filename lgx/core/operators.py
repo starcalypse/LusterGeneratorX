@@ -1,29 +1,16 @@
 import bpy
-
 from .material_builder import MaterialBuilder
 
-
 class LGX_OT_Generate(bpy.types.Operator):
-
     bl_idname = "lgx.generate"
     bl_label = "Generate"
 
     def execute(self, context):
+        mat = MaterialBuilder.build(context)
 
-        material = MaterialBuilder.build(context)
-
-        if material is None:
-
-            self.report(
-                {'WARNING'},
-                "No active object selected"
-            )
-
+        if mat is None:
+            self.report({'WARNING'}, "Select a valid mesh object!")
             return {'CANCELLED'}
 
-        self.report(
-            {'INFO'},
-            f"{material.name} created"
-        )
-
+        self.report({'INFO'}, f"{mat.name} created and assigned")
         return {'FINISHED'}
