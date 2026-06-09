@@ -8,9 +8,13 @@ class LGX_OT_Generate(bpy.types.Operator):
 
     def execute(self, context):
 
+        from .material_builder import MaterialBuilder
+
+        MaterialBuilder.build(context)
+
         self.report(
-            {'INFO'},
-            "LGX Generate pressed"
+        {'INFO'},
+        "LGX Material Created"
         )
 
         return {'FINISHED'}
